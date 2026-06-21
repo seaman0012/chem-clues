@@ -5,36 +5,36 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
+
+const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button 
+      variant="default" 
+      size="sm" 
+      onClick={toggleTheme}
+      className="h-6 cursor-pointer bg-primary-foreground border-foreground hover:bg-primary/20"
+      data-icon="inline-start"
+    >
+      <Sun className="h-4 w-4 text-foreground block dark:hidden" />
+      
+      <Moon className="h-4 w-4 text-foreground hidden dark:block" />
+      
+      <span className="text-xs font-heading sm:text-sm uppercase text-nowrap text-foreground block dark:hidden">
+        Day
+      </span>
+      <span className="text-xs font-heading sm:text-sm uppercase text-nowrap text-foreground hidden dark:block">
+        Night
+      </span>
+    </Button>
   )
 }
+
+
+  
+
