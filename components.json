@@ -23,6 +23,7 @@
   },
   "registries": {
     "@magicui": "https://magicui.design/r/{name}",
-    "@fancy": "https://fancycomponents.dev/r/{name}.json"
+    "@fancy": "https://fancycomponents.dev/r/{name}.json",
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }
