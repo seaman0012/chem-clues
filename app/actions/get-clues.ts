@@ -136,6 +136,61 @@ function groupCluesByStudentId(
   return bundles;
 }
 
+export type ClueTimelineEntry = {
+  clueNumber: number;
+  releaseDate: string;
+};
+
+export type ClueTimelineResult =
+  | {
+      kind: "ok";
+      entries: ClueTimelineEntry[];
+    }
+  | {
+      kind: "error";
+      message: string;
+    };
+
+export async function getClueTimeline(): Promise<ClueTimelineResult> {
+  const timelineQuery = await supabaseAdmin
+    .from("clue_timelines")
+    .select("clue_number, release_date")
+    .order("clue_number", { ascending: true });
+
+  if (timelineQuery.error) {
+    return {
+      kind: "error",
+      message: "ไม่สามารถดึงตารางเวลาคำใบ้ได้ในขณะนี้",
+    };
+  }
+
+  const entries = ((timelineQuery.data ?? []) as Array<{
+    clue_number?: unknown;
+    release_date?: unknown;
+  }>)
+    .flatMap((row) => {
+      if (
+        typeof row.clue_number !== "number" ||
+        typeof row.release_date !== "string"
+      ) {
+        return [];
+      }
+
+      return [
+        {
+          clueNumber: row.clue_number,
+          releaseDate: row.release_date,
+        },
+      ];
+    })
+    .sort((left, right) => left.clueNumber - right.clueNumber);
+
+  return {
+    kind: "ok",
+    entries,
+  };
+}
+
 export async function getCluesByStudentId(
   studentIdInput: string,
 ): Promise<ClueSearchResult> {
