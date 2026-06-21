@@ -1,8 +1,8 @@
 export function Footer() {
   return (
-    <footer className="w-full mt-auto border-t-2 border-foreground bg-neutral-primary-soft z-10">
-      <div className="mx-auto w-full max-w-3xl px-4 py-6 sm:px-6">
-        <div className="sm:flex sm:items-center sm:justify-between">
+    <footer className="w-full mt-auto bg-neutral-primary-soft z-10">
+      <div className="mx-auto w-full max-w-3xl border-t-2 border-foreground px-4 py-6 sm:px-6">
+        <div className="flex flex-row items-center justify-between gap-4">
           <span className="text-muted-foreground text-sm sm:text-center">
             Made by{" "}
             <a
@@ -14,16 +14,15 @@ export function Footer() {
               seaman0012
             </a>
           </span>
-          <div className="flex mt-4 sm:justify-start sm:mt-0">
+          <div className="flex sm:justify-start sm:mt-0">
             <a
               href="https://github.com/seaman0012"
               target="_blank"
               rel="noreferrer"
               className="text-primary transition-colors"
             >
-              {/* ⚡ ใช้ก้อน SVG เดิมของคุณเลย */}
               <svg
-                className="w-5 h-5"
+                className="size-6"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
