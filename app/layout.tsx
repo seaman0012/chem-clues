@@ -60,14 +60,16 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body>
+      <body className="scrollbar-hide">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem
+          forcedTheme="light"
+          enableSystem={false} 
           disableTransitionOnChange
         >
-          <main className="relative">
+
+          <main className="relative min-h-dvh flex flex-col overflow-hidden">
             <GridPattern
                     width={30}
                     height={30}
@@ -75,11 +77,15 @@ export default function RootLayout({
                     y={0}
                     className="stroke-muted-foreground/20"
                   />
-            <div className="flex-1 flex h-full w-full mx-auto min-h-screen max-w-3xl flex-col px-4 py-6 sm:px-6 sm:py-10">
-              {children}
 
-              <Footer />
+            <div className="flex-1 w-full mx-auto max-w-3xl px-4 sm:px-6">
+              <div className="flex flex-col py-6 sm:py-6">
+                {children}
+              </div>
             </div>
+
+            <Footer />
+
           </main>
         </ThemeProvider>
       </body>
