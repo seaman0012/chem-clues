@@ -1,8 +1,8 @@
 export function Footer() {
   return (
-    <footer className="w-full mt-auto bg-neutral-primary-soft z-10">
-      <div className="mx-auto w-full max-w-3xl border-t-2 border-foreground px-4 py-6 sm:px-6">
-        <div className="flex flex-row items-center justify-between gap-4">
+    <footer className="w-full mt-auto bg-neutral-primary-soft z-10 px-4 py-4 sm:px-6">
+      <div className="mx-auto w-full max-w-3xl border-t-2 border-foreground pt-2">
+        <div className="flex flex-row items-center justify-between gap-4 ">
           <span className="text-muted-foreground text-sm sm:text-center">
             Made by{" "}
             <a
