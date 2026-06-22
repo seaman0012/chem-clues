@@ -6,14 +6,12 @@ import {
   type ClueSearchResult,
 } from "@/app/actions/get-clues";
 import {
-  ArrowRight,
   ChevronDown,
   ChevronUp,
   CircleAlert,
   FlaskConical,
   Info,
   LoaderCircle,
-  MoveDown,
   Search,
   Square,
   X,
@@ -151,7 +149,7 @@ function ClueBundleCard({
             {bundle.clues.map((clue) => (
               <div
                 key={`${bundle.bundleNumber}-${clue.clueNumber}`}
-                className="rounded-none border border-border/70 p-3 hover:border-primary transition-colors duration-200"
+                className="rounded-none border border-b-3 border-r-3 border-border/70 p-3 hover:border-primary transition-colors duration-200"
               >
                 <p className="text-xs font-medium text-muted-foreground">
                   คำใบ้ที่ {clue.clueNumber}
@@ -266,7 +264,7 @@ export default function HomePage() {
             </div> */}
             <CardHeader>
               <CardTitle className="text-xl uppercase">
-                Find your hint
+                Find your clues
               </CardTitle>
               <CardDescription></CardDescription>
             </CardHeader>
@@ -306,20 +304,14 @@ export default function HomePage() {
                       className="size-4 md:size-6"
                     />
                   )}
-                  {isPending ? "Searching..." : "FIND HINTS"}
+                  {isPending ? "SEARCHING..." : "FIND CLUES"}
                 </Button>
               </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start gap-2">
-              <p className="text-sm text-muted-foreground">
-                Next hint will be available soon{" "}
-              </p>
+              <ClueCountdown />
             </CardFooter>
           </Card>
-        </div>
-
-        <div className="mt-4">
-          <ClueCountdown />
         </div>
 
         <Separator />
@@ -347,7 +339,7 @@ export default function HomePage() {
                 </Badge>
                 </div>
                 <div className="flex flex-row gap-2 items-center">
-                {bundleCount > 1 &&
+                {bundleCount > 0 &&
                   result.clueBundles.map((bundle) => (
                     <Button
                       key={bundle.bundleNumber}
