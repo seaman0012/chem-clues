@@ -35,7 +35,7 @@ const ibmPlexSansThai = IBM_Plex_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "Chem Bonding",
+  title: "Chem Clue",
   description: "ใส่รหัสนักศึกษาเพื่อดูคำใบ้",
 };
 
