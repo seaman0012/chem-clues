@@ -1,7 +1,7 @@
 export function Footer() {
   return (
-    <footer className="w-full mt-auto bg-neutral-primary-soft z-10 px-4 py-4 sm:px-6">
-      <div className="mx-auto w-full max-w-3xl border-t-2 border-foreground pt-2">
+    <footer className="mx-auto w-full max-w-3xl mt-auto z-10 px-4 py-4 sm:px-6">
+      <div className="border-t-2 border-foreground pt-2">
         <div className="flex flex-row items-center justify-between gap-4 ">
           <span className="text-muted-foreground text-sm sm:text-center">
             Made by{" "}

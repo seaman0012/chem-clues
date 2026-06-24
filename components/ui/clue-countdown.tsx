@@ -90,24 +90,23 @@ export function ClueCountdown() {
 
   return (
     <div className="flex flex-col md:flex-row justify-start md:items-center gap-2.5 ">
-      <p className="text-sm text-primary font-heading uppercase">
-        {allReleased
-          ? "All clues have been released!"
-          : `Next clue in: ${formatTimeLeft(nextEntry.releaseDate, nowMs)}`
-        }
-      </p>
       <div className="flex gap-1">
         {Array.from({ length: totalCount }).map((_, index) => (
           <span
             key={index}
             className={
               index < releasedCount
-                ? "size-3 bg-red-600 border border-b-2 border-r-2 border-primary/40"
-                : "size-3 border border-primary/40"
+                ? "size-3 bg-red-600 border border-b-2 border-r-2 border-primary/60"
+                : "size-3 border border-b-2 border-r-2 border-primary/60"
             }
           />
         ))}
       </div>
+      <p className="text-sm text-primary font-heading uppercase">
+        {allReleased
+          ? "All clues have been released!"
+          : `Next clue in: ${formatTimeLeft(nextEntry.releaseDate, nowMs)}`}
+      </p>
     </div>
   );
 }

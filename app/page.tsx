@@ -149,7 +149,7 @@ function ClueBundleCard({
             {bundle.clues.map((clue) => (
               <div
                 key={`${bundle.bundleNumber}-${clue.clueNumber}`}
-                className="rounded-none border border-b-3 border-r-3 border-border/70 p-3 hover:border-primary transition-colors duration-200"
+                className="rounded-none border border-b-3 border-r-3 border-border p-3 hover:border-primary transition-colors duration-200"
               >
                 <p className="text-xs font-medium text-muted-foreground">
                   คำใบ้ที่ {clue.clueNumber}
