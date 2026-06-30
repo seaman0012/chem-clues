@@ -96,16 +96,16 @@ export function ClueCountdown() {
             key={index}
             className={
               index < releasedCount
-                ? "size-3 bg-red-600 border border-b-2 border-r-2 border-primary/60"
+                ? "size-3 bg-accent border border-b-2 border-r-2 border-primary/60"
                 : "size-3 border border-b-2 border-r-2 border-primary/60"
             }
           />
         ))}
       </div>
-      <p className="text-sm text-primary font-heading uppercase">
+      <p className="font-thai text-sm text-primary font-medium uppercase">
         {allReleased
           ? "All clues have been released!"
-          : `Next clue in: ${formatTimeLeft(nextEntry.releaseDate, nowMs)}`}
+          : `คำใบ้ถัดไป: ${formatTimeLeft(nextEntry.releaseDate, nowMs)}`}
       </p>
     </div>
   );

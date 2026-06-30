@@ -319,7 +319,7 @@ export async function getCluesByStudentId(
 
   return {
     kind: "ok",
-    message: `พบคำใบ้ ${clueBundles.reduce((total, bundle) => total + bundle.clues.length, 0)} รายการ จาก ${clueBundles.length} ชุด`,
+    message: `พบคำใบ้ ${clueBundles.reduce((total, bundle) => total + bundle.clues.length, 0)} รายการ จากพี่รหัส ${clueBundles.length} คน`,
     clueBundles,
   };
 }
