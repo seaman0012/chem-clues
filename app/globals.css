@@ -53,12 +53,13 @@
   --color-surface: var(--surface);
   --color-surface2: var(--surface2);
   --color-stamp: var(--stamp);
+  --color-accent: var(--accent);
 }
 
 :root {
   --background: oklch(0.9387 0.012 79.78);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(0.97 0.008 85);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -68,7 +69,7 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(57.7% 0.245 27.325);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -98,42 +99,43 @@
 }
 
 .dark {
-  --background: oklch(0.2099 0.0039 286.06);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --background: oklch(0.8504 0.0591 308.75);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.8886 0.0416 297.74);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(31.942% 0.11827 295.027);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
- 
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
   --color-kmitl: oklch(0.6275 0.193 40.56);
-  --grid: oklch(0.85 0.04 80 / 0.06); /* เส้นตารางจางๆ สีขาว */
-  --paper-glow: oklch(0.22 0.02 70);
-  --stamp: oklch(0.704 0.191 22.216);
+  --surface: oklch(0.97 0.008 85);
+  --surface2: oklch(91.529% 0.0125 75.239); 
+  --glow: oklch(59.449% 0.08484 299.678)
 }
 
 
@@ -147,48 +149,18 @@
     background-color: var(--background);
     min-height: 100vh;
 
+    .dark{
     background-image: radial-gradient(
       ellipse at top,
-      var(--paper-glow) 10%,
-      transparent 100%
+      var(--glow) 10%,
+      transparent 20%
     );
+    }
 
     background-attachment: fixed;
   }
   html {
     @apply font-thai;
     scroll-behavior: smooth;
-  }
-}
-
-@layer utilities {
-  .animate-slam {
-    animation: slam 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  }
-}
- 
-.stamp {
-  border: 2px solid var(--stamp);
-  color: var(--stamp);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-family: var(--font-mono);
-  padding: 0.25rem 0.6rem;
-  font-weight: 700;
-  display: inline-block;
-}
- 
-@keyframes slam {
-  0% {
-    opacity: 0;
-    transform: rotate(-4deg) scale(2.4);
-  }
-  60% {
-    opacity: 1;
-    transform: rotate(-4deg) scale(0.95);
-  }
-  100% {
-    opacity: 0.92;
-    transform: rotate(-4deg) scale(1);
   }
 }
