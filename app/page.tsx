@@ -10,7 +10,6 @@ import {
   ChevronDown,
   ChevronUp,
   CircleAlert,
-  FlaskConical,
   Info,
   LoaderCircle,
   Search,
@@ -32,6 +31,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ClueCountdown } from "@/components/ui/clue-countdown";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const SEARCH_DEBOUNCE_MS = 650;
 
@@ -160,7 +160,7 @@ function ClueBundleCard({
             ))}
           </CardContent>
           <CardFooter className="flex items-center justify-between">
-            <Badge variant="default" className="py-3 bg-primary text-secondary text-sm">
+            <Badge variant="default" className="py-3 bg-secondary-foreground text-secondary text-sm">
               {bundle.clues.length} คำใบ้
             </Badge>
           </CardFooter>
@@ -241,7 +241,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="shrink-0 flex flex-row gap-2 items-center">
-            <div className="flex shrink-0 py-1 px-2 gap-2 h-6 items-center bg-primary-foreground border-foreground border">
+            {/* <div className="flex shrink-0 py-1 px-2 gap-2 h-6 items-center bg-primary-foreground border-foreground border">
               <Square
                 className="size-2 animate-pulse fill-current text-accent"
                 fill="text-green-600"
@@ -249,7 +249,9 @@ export default function HomePage() {
               <p className="text-xs font-heading sm:text-sm uppercase text-nowrap text-primary">
                 Online
               </p>
-            </div>
+              
+            </div> */}
+            <ModeToggle/>
           </div>
         </div>
 
@@ -333,13 +335,13 @@ export default function HomePage() {
                 <div className="flex flex-row gap-2 items-center">
                   <Badge
                     variant="secondary"
-                    className="py-4 bg-background border-2 border-b-3 border-r-3 border-primary text-sm"
+                    className="py-4 bg-card border-2 border-b-3 border-r-3 border-primary text-sm"
                   >
                     {bundleCount} พี่รหัส
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="py-4 bg-background border-2 border-b-3 border-r-3 border-primary text-sm text-primary"
+                    className="py-4 bg-card border-2 border-b-3 border-r-3 border-primary text-sm text-primary"
                   >
                     {clueCount} คำใบ้
                   </Badge>
@@ -350,11 +352,11 @@ export default function HomePage() {
                       <Button
                         key={bundle.bundleNumber}
                         type="button"
-                        variant="outline"
+                        variant="secondary"
                         size="sm"
                         data-icon="inline-start"
                         onClick={() => jumpToBundle(bundle.bundleNumber)}
-                        className="h-auto py-1.5 px-3 bg-accent hover:bg-accent/80 border-2 border-b-3 border-r-3 border-primary text-sm text-secondary hover:translate-y-0.5 hover:text-secondary/40 font-medium normal-case"
+                        className="h-auto py-1.5 px-3 bg-accent hover:bg-accent/80 border-2 border-b-3 border-r-3 border-primary text-sm text-secondary hover:translate-y-0.5 hover:text-secondary/80 font-medium normal-case"
                       >
                         พี่คนที่ {bundle.bundleNumber}
                       </Button>

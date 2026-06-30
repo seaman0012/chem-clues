@@ -18,7 +18,7 @@ const toggleTheme = () => {
       variant="default" 
       size="sm" 
       onClick={toggleTheme}
-      className="h-6 cursor-pointer bg-primary-foreground border-foreground hover:bg-primary/10"
+      className="h-6 cursor-pointer bg-card border-foreground hover:bg-card/80 hover:translate-0.5"
       data-icon="inline-start"
     >
       <Sun className="h-4 w-4 text-foreground block dark:hidden" />

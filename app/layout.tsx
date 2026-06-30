@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Geist, Geist_Mono, Noto_Sans, JetBrains_Mono, Source_Code_Pro, IBM_Plex_Sans_Thai } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Noto_Sans,
+  JetBrains_Mono,
+  Source_Code_Pro,
+  IBM_Plex_Sans_Thai,
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/ui/footer";
@@ -63,29 +70,24 @@ export default function RootLayout({
       <body className="scrollbar-hide">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          forcedTheme="light"
-          enableSystem={false} 
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
-
           <main className="relative min-h-dvh flex flex-col overflow-hidden">
             <GridPattern
-                    width={30}
-                    height={30}
-                    x={0}
-                    y={0}
-                    className="stroke-muted-foreground/20"
-                  />
+              width={30}
+              height={30}
+              x={0}
+              y={0}
+              className="stroke-muted-foreground/20"
+            />
 
             <div className="flex-1 w-full mx-auto max-w-3xl px-4 sm:px-6">
-              <div className="flex flex-col py-6 sm:py-6">
-                {children}
-              </div>
+              <div className="flex flex-col py-6 sm:py-6">{children}</div>
             </div>
 
             <Footer />
-
           </main>
         </ThemeProvider>
       </body>
