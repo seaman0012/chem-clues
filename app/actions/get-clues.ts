@@ -252,21 +252,21 @@ export async function getCluesByStudentId(
   if ((seniorConnectionQuery.data ?? []).length > 0) {
     return {
       kind: "senior",
-      message: "รหัสนี้เป็น senior จึงไม่แสดงคำใบ้",
+      message: "รหัสนี้เป็นรุ่นพี่ไม่แสดงคำใบ้",
     };
   }
 
   if (studentQuery.data.status === "ไม่สนใจ") {
     return {
       kind: "not_joined",
-      message: "รุ่นพี่ท่านนี้ไม่ได้เข้าร่วมกิจกรรม",
+      message: "รุ่นพี่นี้ไม่ได้เข้าร่วมกิจกรรม",
     };
   }
 
   if (studentQuery.data.status === "ยังไม่กรอก") {
     return {
       kind: "not_submitted",
-      message: "รุ่นพี่เข้าร่วมกิจกรรม แต่ยังไม่ได้กรอกคำใบ้",
+      message: "ไม่พบคำใบ้",
     };
   }
 
@@ -277,7 +277,7 @@ export async function getCluesByStudentId(
   if (juniorConnections.length === 0) {
     return {
       kind: "senior",
-      message: "รหัสนี้เป็น senior จึงไม่แสดงคำใบ้",
+      message: "รหัสนี้เป็นรุ่นพี่ไม่แสดงคำใบ้",
     };
   }
 
