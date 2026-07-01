@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { Footer } from "@/components/ui/footer";
 import { GridPattern } from "@/components/ui/grid-pattern";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const jetbrainsMonoHeading = JetBrains_Mono({
   subsets: ["latin"],
@@ -92,6 +93,7 @@ export default function RootLayout({
           </main>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
