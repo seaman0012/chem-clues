@@ -33,8 +33,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ClueCountdown } from "@/components/ui/clue-countdown";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
-const SEARCH_DEBOUNCE_MS = 650;
-
 type ClueBundle = Extract<
   ClueSearchResult,
   { kind: "ok" }
@@ -80,7 +78,9 @@ function ResultAlert({ result }: { result: ClueSearchResult }) {
         {icon}
         {getAlertTitle(result)}
       </AlertTitle>
-      <AlertDescription className="font-thai">{result.message}</AlertDescription>
+      <AlertDescription className="font-thai">
+        {result.message}
+      </AlertDescription>
     </Alert>
   );
 }
@@ -160,7 +160,10 @@ function ClueBundleCard({
             ))}
           </CardContent>
           <CardFooter className="flex items-center justify-between">
-            <Badge variant="default" className="py-3 bg-secondary-foreground text-secondary text-sm">
+            <Badge
+              variant="default"
+              className="py-3 bg-secondary-foreground text-secondary text-sm"
+            >
               {bundle.clues.length} คำใบ้
             </Badge>
           </CardFooter>
@@ -174,7 +177,6 @@ export default function HomePage() {
   const [studentId, setStudentId] = useState("");
   const [result, setResult] = useState<ClueSearchResult | null>(null);
   const [isPending, startTransition] = useTransition();
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [openBundles, setOpenBundles] = useState<Record<number, boolean>>({});
 
   const canSearch = studentId.trim().length > 0 && !isPending;
@@ -197,23 +199,16 @@ export default function HomePage() {
 
   const runSearch = () => {
     const sanitized = studentId.trim();
-
     if (!sanitized) {
       setResult({ kind: "error", message: "กรุณากรอกรหัสนักศึกษา" });
       return;
     }
 
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-
-    debounceRef.current = setTimeout(() => {
-      startTransition(async () => {
-        const actionResult = await getCluesByStudentId(sanitized);
-        setResult(actionResult);
-        setOpenBundles({});
-      });
-    }, SEARCH_DEBOUNCE_MS);
+    startTransition(async () => {
+      const actionResult = await getCluesByStudentId(sanitized);
+      setResult(actionResult);
+      setOpenBundles({});
+    });
   };
 
   const clueCount =
@@ -251,7 +246,7 @@ export default function HomePage() {
               </p>
               
             </div> */}
-            <ModeToggle/>
+            <ModeToggle />
           </div>
         </div>
 
@@ -293,6 +288,9 @@ export default function HomePage() {
                   inputMode="numeric"
                   autoComplete="off"
                   aria-label="student id"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") runSearch();
+                  }}
                   className="px-0 h-12 font-code bg-none text-base dark:bg-transparent md:text-xl placeholder:px-2 placeholder:text-xl placeholder:text-muted-foreground border-0 border-b-2 border-primary outline-none focus-visible:ring-0 focus-visible:border-accent"
                 />
                 <Button
@@ -379,7 +377,9 @@ export default function HomePage() {
           {result?.kind === "ok" && clueCount === 0 && (
             <Card className="bg-card border-2 border-primary">
               <CardHeader>
-                <CardTitle className="font-thai">ยังไม่มีคำใบ้ที่เปิดให้ดูในตอนนี้</CardTitle>
+                <CardTitle className="font-thai">
+                  ยังไม่มีคำใบ้ที่เปิดให้ดูในตอนนี้
+                </CardTitle>
                 <CardDescription>
                   ระบบยังไม่พบคำใบ้ที่ปล่อยแล้วสำหรับรหัสนี้
                 </CardDescription>
