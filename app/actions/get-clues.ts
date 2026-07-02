@@ -203,11 +203,11 @@ export async function getCluesByStudentId(
     };
   }
 
-  const juniorConnectionQuery = await supabaseAdmin
-    .from("buddy_connections")
-    .select("senior_id")
-    .eq("junior_id", studentId)
-    .order("created_at", { ascending: true });
+  const [juniorConnectionQuery, seniorConnectionQuery, studentQuery] = await Promise.all([
+  supabaseAdmin.from("buddy_connections").select("senior_id").eq("junior_id", studentId),
+  supabaseAdmin.from("buddy_connections").select("id").eq("senior_id", studentId).limit(1),
+  supabaseAdmin.from("students").select("status").eq("student_id", studentId).maybeSingle(),
+]);
 
   if (juniorConnectionQuery.error) {
     return {
@@ -216,12 +216,6 @@ export async function getCluesByStudentId(
     };
   }
 
-  const seniorConnectionQuery = await supabaseAdmin
-    .from("buddy_connections")
-    .select("id")
-    .eq("senior_id", studentId)
-    .limit(1);
-
   if (seniorConnectionQuery.error) {
     return {
       kind: "error",
@@ -229,11 +223,6 @@ export async function getCluesByStudentId(
     };
   }
 
-  const studentQuery = await supabaseAdmin
-    .from("students")
-    .select("status")
-    .eq("student_id", studentId)
-    .maybeSingle();
 
   if (studentQuery.error) {
     return {
@@ -245,7 +234,7 @@ export async function getCluesByStudentId(
   if (!studentQuery.data) {
     return {
       kind: "not_found",
-      message: "ไม่พบรหัสนักศึกษาในระบบ",
+      message: "ไม่พบรหัสนักศึกษา",
     };
   }
 
